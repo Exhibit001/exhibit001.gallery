@@ -49,13 +49,17 @@ body {
 .arrow-btn {
   background: black;
   color: white;
-  padding: 16px 28px;
+  padding: 14px 20px;
   border: none;
-  font-size: 30px;
-  font-family: 'Press Start 2P', monospace;
+  font-size: 38px; /* BIGGER ARROW */
+  font-family: monospace; /* cleaner retro arrow */
   cursor: pointer;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .label {
   font-size: 10px;
