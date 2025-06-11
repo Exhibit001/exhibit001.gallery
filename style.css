@@ -1,98 +1,80 @@
 body {
   margin: 0;
-  background-color: white;
+  background: white;
   font-family: sans-serif;
   overflow: hidden;
 }
 
-#museum-wrapper {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-#stick-figure {
-  position: absolute;
-  bottom: 20px;
-  left: 16px;
-  font-size: 28px;
-  z-index: 2;
-}
-
-#museum-room {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  height: 100%;
-  width: max-content;
-  padding: 40px 20px;
-  gap: 24px;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-
-.frame {
-  width: 240px;
-  height: 320px;
-  background: white;
-  border: 2px solid black;
+.carousel-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+.carousel-frame {
+  text-align: center;
+  width: 90vw;
+  max-width: 400px;
   cursor: pointer;
 }
 
-.frame img {
-  max-width: 90%;
-  max-height: 90%;
+.carousel-frame img {
+  width: 100%;
+  max-height: 65vh;
   object-fit: contain;
+  border: 2px solid black;
+  background: white;
 }
 
-#controls {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-#controls .label {
-  font-size: 12px;
-  margin-bottom: 4px;
+.style-name {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 18px;
   color: black;
 }
 
-#controls button {
-  font-size: 24px;
-  margin: 0 10px;
+.arrow {
+  font-size: 32px;
+  padding: 12px 18px;
   background: black;
   color: white;
-  padding: 10px 20px;
-  border: none;
   cursor: pointer;
+  user-select: none;
 }
 
-#popup, #video-section {
+.arrow.left {
+  position: absolute;
+  left: 10px;
+}
+
+.arrow.right {
+  position: absolute;
+  right: 10px;
+}
+
+.popup,
+.video-view {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 10;
   flex-direction: column;
+  z-index: 10;
+  padding: 20px;
 }
 
 .popup-box {
   background: white;
   color: black;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   width: 90%;
-  max-width: 340px;
+  max-width: 350px;
   border-radius: 8px;
 }
 
@@ -101,37 +83,35 @@ body {
   margin: 10px;
   padding: 12px;
   font-weight: bold;
-  font-size: 16px;
   border: 2px solid black;
   background: white;
   cursor: pointer;
 }
 
-#video-section video {
-  width: 80vw;
+.video-view video {
+  width: 90vw;
   max-height: 50vh;
+  margin-bottom: 20px;
   border: 3px solid white;
+}
+
+.desc-box {
+  background: white;
+  color: black;
+  padding: 16px;
+  border: 2px solid black;
+  max-width: 420px;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-#description-box {
-  background: white;
-  color: black;
-  padding: 20px;
-  border: 2px solid black;
-  width: 80vw;
-  max-width: 400px;
-  text-align: center;
-}
-
-#video-section button {
-  margin-top: 20px;
-  padding: 10px 20px;
+.video-view button {
   background: black;
   color: white;
-  font-size: 16px;
+  padding: 10px 20px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .hidden {
