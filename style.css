@@ -5,73 +5,80 @@ body {
   overflow: hidden;
 }
 
-#gallery-container {
-  position: relative;
+#museum-wrapper {
   width: 100vw;
   height: 100vh;
+  position: relative;
   overflow: hidden;
-}
-
-#gallery-room {
-  display: flex;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  height: 80%;
-  align-items: center;
-  padding: 40px;
-  gap: 50px;
-}
-
-.frame {
-  width: 280px;
-  height: 360px;
-  border: 2px solid black;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.frame img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 
 #stick-figure {
   position: absolute;
-  bottom: 10px;
-  left: 20px;
+  bottom: 20px;
+  left: 16px;
+  font-size: 28px;
+  z-index: 2;
 }
 
-#arrow-nav {
+#museum-room {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 100%;
+  width: max-content;
+  padding: 40px 20px;
+  gap: 24px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.frame {
+  width: 240px;
+  height: 320px;
+  background: white;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.frame img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+#controls {
   position: absolute;
   bottom: 20px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
 }
 
-.arrow-label {
+#controls .label {
   font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  color: black;
 }
 
-#arrow-nav button {
-  font-size: 28px;
-  padding: 8px 20px;
-  margin: 0 6px;
-  border: none;
+#controls button {
+  font-size: 24px;
+  margin: 0 10px;
   background: black;
   color: white;
+  padding: 10px 20px;
+  border: none;
   cursor: pointer;
 }
 
 #popup, #video-section {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0,0,0,0.8);
   display: none;
   justify-content: center;
   align-items: center;
@@ -84,9 +91,9 @@ body {
   color: black;
   padding: 30px;
   text-align: center;
-  border-radius: 6px;
   width: 90%;
-  max-width: 400px;
+  max-width: 340px;
+  border-radius: 8px;
 }
 
 .popup-buttons button {
@@ -101,7 +108,7 @@ body {
 }
 
 #video-section video {
-  width: 80%;
+  width: 80vw;
   max-height: 50vh;
   border: 3px solid white;
   margin-bottom: 20px;
@@ -111,14 +118,14 @@ body {
   background: white;
   color: black;
   padding: 20px;
-  text-align: center;
-  max-width: 500px;
   border: 2px solid black;
-  font-size: 16px;
-  margin-bottom: 20px;
+  width: 80vw;
+  max-width: 400px;
+  text-align: center;
 }
 
 #video-section button {
+  margin-top: 20px;
   padding: 10px 20px;
   background: black;
   color: white;
