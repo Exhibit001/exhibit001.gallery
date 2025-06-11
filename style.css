@@ -51,7 +51,7 @@ body {
   color: white;
   padding: 14px 20px;
   border: none;
-  font-size: 38px; /* BIGGER ARROW */
+  font-size: 100px; /* BIGGER ARROW */
   font-family: monospace; /* cleaner retro arrow */
   cursor: pointer;
   line-height: 1;
