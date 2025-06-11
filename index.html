@@ -4,76 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Exhibit001 — Gallery</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="carousel-wrapper">
-    <div class="carousel-frame" onclick="openPopup()">
-      <img id="techImage" src="looks/tech1.jpg" alt="Style" />
-      <p class="style-name" id="styleLabel">NO.001</p>
+  <div class="gallery-screen">
+
+    <!-- Display Box -->
+    <div class="display-frame" onclick="openPopup()">
+      <img id="techImage" src="looks/tech1.jpg" alt="Tech Style"/>
+      <p class="style-label" id="styleLabel">STYLE NO.001</p>
     </div>
 
-    <div class="bottom-arrows">
-      <button onclick="changeLook(-1)">←</button>
-      <span class="arrow-label">LEFT / RIGHT</span>
-      <button onclick="changeLook(1)">→</button>
+    <!-- Bottom Controls -->
+    <div class="retro-controls">
+      <button onclick="changeLook(-1)" class="arrow-btn">←</button>
+      <span class="label">(LEFT)</span>
+      <span class="label">(RIGHT)</span>
+      <button onclick="changeLook(1)" class="arrow-btn">→</button>
     </div>
+
   </div>
 
-  <!-- Popup Prompt -->
+  <!-- Popup Box -->
   <div class="popup hidden" id="popupPrompt">
     <div class="popup-box">
-      <p id="popupQuestion">Want to look at style NO.001?</p>
-      <div class="popup-buttons">
+      <p id="popupQuestion">View style STYLE NO.001?</p>
+      <div class="popup-options">
         <button onclick="showVideo()">YES</button>
         <button onclick="closePopup()">NO</button>
       </div>
     </div>
   </div>
 
-  <!-- Video View -->
+  <!-- Video Viewer -->
   <div class="video-view hidden" id="videoView">
-    <video autoplay loop muted id="lookVideo"></video>
-    <div class="desc-box">
-      <h2 id="videoTitle">NO.001</h2>
-      <p id="videoDesc">Loading description...</p>
+    <div class="video-frame">
+      <video autoplay loop muted id="lookVideo"></video>
+      <div class="desc-box">
+        <h3 id="videoTitle">STYLE NO.001</h3>
+        <p id="videoDesc">Loading...</p>
+      </div>
     </div>
-    <button onclick="closeVideo()">CLOSE</button>
+    <button onclick="closeVideo()" class="exit-btn">✕ CLOSE</button>
   </div>
 
   <script>
     const looks = [
       {
-        name: "NO.001",
-        img: "looks/newjeans1.jpg",
-        video: "looks/loopjeans1.mp4",
-        desc: "Denim patchwork jeans made June 2025. Inspired by NYC pavement."
+        name: "STYLE NO.001",
+        img: "looks/tech1.jpg",
+        video: "looks/loop1.mp4",
+        desc: "Made June 2025. Patchwork denim — raw and stitched by hand."
       },
       {
-        name: "NO.002",
-        img: "looks/newshirt1.jpg",
-        video: "looks/loopshirt1.mp4",
-        desc: "Minimalist cream button-up made from upcycled canvas. July 2025."
+        name: "STYLE NO.002",
+        img: "looks/tech2.jpg",
+        video: "looks/loop2.mp4",
+        desc: "Cream oversized shirt from salvaged canvas. Minimal finish."
       },
       {
-        name: "NO.003",
-        img: "looks/newcombo1.jpg",
-        video: "looks/loopcombo1.mp4",
-        desc: "Layered combo look featuring hand-painted details."
+        name: "STYLE NO.003",
+        img: "looks/tech3.jpg",
+        video: "looks/loop3.mp4",
+        desc: "Combo layers. Orange contrast detail. Fall 2025 drop."
       }
     ];
 
     let current = 0;
 
     function updateLook() {
-      document.getElementById("techImage").src = looks[current].img;
-      document.getElementById("styleLabel").innerText = looks[current].name;
-      document.getElementById("popupQuestion").innerText =
-        "Want to look at style " + looks[current].name + "?";
+      const look = looks[current];
+      document.getElementById("techImage").src = look.img;
+      document.getElementById("styleLabel").innerText = look.name;
+      document.getElementById("popupQuestion").innerText = "View " + look.name + "?";
     }
 
-    function changeLook(direction) {
-      current = (current + direction + looks.length) % looks.length;
+    function changeLook(dir) {
+      current = (current + dir + looks.length) % looks.length;
       updateLook();
     }
 
@@ -86,10 +94,9 @@
     }
 
     function showVideo() {
-      closePopup();
       const look = looks[current];
-      const video = document.getElementById("lookVideo");
-      video.src = look.video;
+      document.getElementById("popupPrompt").classList.add("hidden");
+      document.getElementById("lookVideo").src = look.video;
       document.getElementById("videoTitle").innerText = look.name;
       document.getElementById("videoDesc").innerText = look.desc;
       document.getElementById("videoView").classList.remove("hidden");
