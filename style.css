@@ -17,8 +17,8 @@ body {
 }
 
 .display-frame {
-  width: 90vw;
-  max-width: 380px;
+  width: 95vw;
+  max-width: 500px;
   border: 5px solid black;
   background: white;
   padding: 10px;
@@ -27,7 +27,7 @@ body {
 
 .display-frame img {
   width: 100%;
-  max-height: 60vh;
+  max-height: 75vh;
   object-fit: contain;
   background: #fff;
   border: 3px dashed black;
@@ -39,20 +39,22 @@ body {
 }
 
 .retro-controls {
-  margin-top: 25px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
 }
 
 .arrow-btn {
   background: black;
   color: white;
-  padding: 8px 14px;
+  padding: 16px 28px;
   border: none;
-  font-size: 14px;
+  font-size: 30px;
+  font-family: 'Press Start 2P', monospace;
   cursor: pointer;
+  line-height: 1;
 }
 
 .label {
@@ -129,3 +131,4 @@ body {
 .hidden {
   display: none;
 }
+s
