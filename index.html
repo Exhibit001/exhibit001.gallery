@@ -2,33 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exhibit001 — Gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="gallery-container">
-    <div id="stick-figure">
-      <img src="stick.png" alt="visitor" />
-    </div>
+  <div id="museum-wrapper">
+    <div id="stick-figure">🧍‍♂️</div>
 
-    <div id="gallery-room">
-      <!-- Tech-pack pieces -->
+    <div id="museum-room">
       <div class="frame" onclick="openPopup(0)">
-        <img src="looks/tech1.jpg" alt="Tech 1" />
+        <img src="looks/tech1.jpg" alt="Look 1" />
       </div>
       <div class="frame" onclick="openPopup(1)">
-        <img src="looks/tech2.jpg" alt="Tech 2" />
+        <img src="looks/tech2.jpg" alt="Look 2" />
       </div>
       <div class="frame" onclick="openPopup(2)">
-        <img src="looks/tech3.jpg" alt="Tech 3" />
+        <img src="looks/tech3.jpg" alt="Look 3" />
       </div>
     </div>
 
-    <div id="arrow-nav">
-      <div class="arrow-label">LEFT / RIGHT</div>
-      <button onclick="scrollGallery(-1)">←</button>
-      <button onclick="scrollGallery(1)">→</button>
+    <div id="controls">
+      <div class="label">← LEFT | RIGHT →</div>
+      <button onclick="moveRoom(-1)">←</button>
+      <button onclick="moveRoom(1)">→</button>
     </div>
   </div>
 
@@ -43,7 +40,7 @@
     </div>
   </div>
 
-  <!-- Video + description -->
+  <!-- Look video -->
   <div id="video-section" class="hidden">
     <video autoplay loop muted id="look-video"></video>
     <div id="description-box">
@@ -59,19 +56,19 @@
         name: "NO.001",
         img: "looks/tech1.jpg",
         video: "looks/loop1.mp4",
-        desc: "Made June 2025 — Recycled denim, hand-stitched and washed."
+        desc: "Created June 2025 – Recycled denim, cut & stitched by hand."
       },
       {
         name: "NO.002",
         img: "looks/tech2.jpg",
         video: "looks/loop2.mp4",
-        desc: "Spray-painted canvas wide-fit jean. Built in July 2025."
+        desc: "Spray-painted wide-leg canvas. Handmade July 2025."
       },
       {
         name: "NO.003",
         img: "looks/tech3.jpg",
         video: "looks/loop3.mp4",
-        desc: "First shirt sample for Exhibit001. Created August 2025."
+        desc: "Shirt design with asymmetrical sleeve. Sample 001."
       }
     ];
 
@@ -92,13 +89,9 @@
       closePopup();
       const look = looks[currentLookIndex];
       const video = document.getElementById("look-video");
-      const title = document.getElementById("lookTitle");
-      const desc = document.getElementById("lookDesc");
-
+      document.getElementById("lookTitle").innerText = look.name;
+      document.getElementById("lookDesc").innerText = look.desc;
       video.src = look.video;
-      title.innerText = look.name;
-      desc.innerText = look.desc;
-
       document.getElementById("video-section").classList.remove("hidden");
     }
 
@@ -107,11 +100,13 @@
       document.getElementById("look-video").pause();
     }
 
-    function scrollGallery(direction) {
-      const room = document.getElementById("gallery-room");
-      room.scrollBy({ left: direction * 350, behavior: "smooth" });
+    function moveRoom(direction) {
+      const room = document.getElementById("museum-room");
+      room.scrollBy({
+        left: direction * 300,
+        behavior: "smooth"
+      });
     }
   </script>
 </body>
 </html>
-
