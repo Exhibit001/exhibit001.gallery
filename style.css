@@ -7,15 +7,15 @@ body {
 
 .carousel-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   padding: 20px;
-  position: relative;
+  text-align: center;
 }
 
 .carousel-frame {
-  text-align: center;
   width: 90vw;
   max-width: 400px;
   cursor: pointer;
@@ -23,7 +23,7 @@ body {
 
 .carousel-frame img {
   width: 100%;
-  max-height: 65vh;
+  max-height: 60vh;
   object-fit: contain;
   border: 2px solid black;
   background: white;
@@ -31,28 +31,33 @@ body {
 
 .style-name {
   font-weight: bold;
-  margin-top: 10px;
-  font-size: 18px;
+  margin-top: 12px;
+  font-size: 20px;
   color: black;
 }
 
-.arrow {
-  font-size: 32px;
+.bottom-arrows {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.bottom-arrows button {
+  font-size: 22px;
   padding: 12px 18px;
   background: black;
   color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  user-select: none;
 }
 
-.arrow.left {
-  position: absolute;
-  left: 10px;
-}
-
-.arrow.right {
-  position: absolute;
-  right: 10px;
+.arrow-label {
+  font-size: 13px;
+  color: black;
+  font-weight: bold;
 }
 
 .popup,
@@ -72,10 +77,10 @@ body {
   background: white;
   color: black;
   padding: 20px;
-  text-align: center;
   width: 90%;
   max-width: 350px;
-  border-radius: 8px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .popup-buttons button {
@@ -91,27 +96,27 @@ body {
 .video-view video {
   width: 90vw;
   max-height: 50vh;
-  margin-bottom: 20px;
   border: 3px solid white;
+  margin-bottom: 20px;
 }
 
 .desc-box {
   background: white;
   color: black;
-  padding: 16px;
+  padding: 18px;
   border: 2px solid black;
-  max-width: 420px;
   text-align: center;
-  margin-bottom: 20px;
+  max-width: 400px;
 }
 
 .video-view button {
+  margin-top: 20px;
+  padding: 10px 22px;
   background: black;
   color: white;
-  padding: 10px 20px;
+  font-size: 15px;
   border: none;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .hidden {
