@@ -49,17 +49,16 @@ body {
 .arrow-btn {
   background: black;
   color: white;
-  padding: 25px 30px;
+  padding: 8px 16px;
   border: none;
-  font-size: 38px; /* BIGGER ARROW */
-  font-family: monospace; /* cleaner retro arrow */
+  font-size: 64px;
+  font-family: sans-serif;
   cursor: pointer;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 
 .label {
   font-size: 10px;
