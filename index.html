@@ -2,37 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Exhibit001 — Gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="museum-wrapper">
-    <div id="stick-figure">🧍‍♂️</div>
+  <div class="carousel-wrapper">
+    <div class="arrow left" onclick="changeLook(-1)">←</div>
 
-    <div id="museum-room">
-      <div class="frame" onclick="openPopup(0)">
-        <img src="looks/tech1.jpg" alt="Look 1" />
-      </div>
-      <div class="frame" onclick="openPopup(1)">
-        <img src="looks/tech2.jpg" alt="Look 2" />
-      </div>
-      <div class="frame" onclick="openPopup(2)">
-        <img src="looks/tech3.jpg" alt="Look 3" />
-      </div>
+    <div class="carousel-frame" onclick="openPopup()">
+      <img id="techImage" src="looks/tech1.jpg" alt="Style" />
+      <p class="style-name" id="styleLabel">NO.001</p>
     </div>
 
-    <div id="controls">
-      <div class="label">← LEFT | RIGHT →</div>
-      <button onclick="moveRoom(-1)">←</button>
-      <button onclick="moveRoom(1)">→</button>
-    </div>
+    <div class="arrow right" onclick="changeLook(1)">→</div>
   </div>
 
-  <!-- Popup ask -->
-  <div id="popup" class="hidden">
+  <!-- Popup Prompt -->
+  <div class="popup hidden" id="popupPrompt">
     <div class="popup-box">
-      <p id="popup-question">Want to look at style ___?</p>
+      <p id="popupQuestion">Want to look at style NO.001?</p>
       <div class="popup-buttons">
         <button onclick="showVideo()">YES</button>
         <button onclick="closePopup()">NO</button>
@@ -40,12 +29,12 @@
     </div>
   </div>
 
-  <!-- Look video -->
-  <div id="video-section" class="hidden">
-    <video autoplay loop muted id="look-video"></video>
-    <div id="description-box">
-      <h2 id="lookTitle"></h2>
-      <p id="lookDesc"></p>
+  <!-- Video View -->
+  <div class="video-view hidden" id="videoView">
+    <video autoplay loop muted id="lookVideo"></video>
+    <div class="desc-box">
+      <h2 id="videoTitle">NO.001</h2>
+      <p id="videoDesc">Loading description...</p>
     </div>
     <button onclick="closeVideo()">CLOSE</button>
   </div>
@@ -56,57 +45,61 @@
         name: "NO.001",
         img: "looks/tech1.jpg",
         video: "looks/loop1.mp4",
-        desc: "Created June 2025 – Recycled denim, cut & stitched by hand."
+        desc: "Created June 2025 – Recycled denim, hand-stitched and painted."
       },
       {
         name: "NO.002",
         img: "looks/tech2.jpg",
         video: "looks/loop2.mp4",
-        desc: "Spray-painted wide-leg canvas. Handmade July 2025."
+        desc: "Wide-leg painted canvas with contrast seams. July 2025."
       },
       {
         name: "NO.003",
         img: "looks/tech3.jpg",
         video: "looks/loop3.mp4",
-        desc: "Shirt design with asymmetrical sleeve. Sample 001."
+        desc: "Asymmetrical cropped shirt sample. Made August 2025."
       }
     ];
 
-    let currentLookIndex = 0;
+    let current = 0;
 
-    function openPopup(index) {
-      currentLookIndex = index;
-      document.getElementById("popup-question").textContent =
-        "Want to look at style " + looks[index].name + "?";
-      document.getElementById("popup").classList.remove("hidden");
+    function updateLook() {
+      document.getElementById("techImage").src = looks[current].img;
+      document.getElementById("styleLabel").innerText = looks[current].name;
+      document.getElementById("popupQuestion").innerText = 
+        "Want to look at style " + looks[current].name + "?";
+    }
+
+    function changeLook(direction) {
+      current = (current + direction + looks.length) % looks.length;
+      updateLook();
+    }
+
+    function openPopup() {
+      document.getElementById("popupPrompt").classList.remove("hidden");
     }
 
     function closePopup() {
-      document.getElementById("popup").classList.add("hidden");
+      document.getElementById("popupPrompt").classList.add("hidden");
     }
 
     function showVideo() {
       closePopup();
-      const look = looks[currentLookIndex];
-      const video = document.getElementById("look-video");
-      document.getElementById("lookTitle").innerText = look.name;
-      document.getElementById("lookDesc").innerText = look.desc;
+      const look = looks[current];
+      const video = document.getElementById("lookVideo");
       video.src = look.video;
-      document.getElementById("video-section").classList.remove("hidden");
+      document.getElementById("videoTitle").innerText = look.name;
+      document.getElementById("videoDesc").innerText = look.desc;
+      document.getElementById("videoView").classList.remove("hidden");
     }
 
     function closeVideo() {
-      document.getElementById("video-section").classList.add("hidden");
-      document.getElementById("look-video").pause();
+      const video = document.getElementById("lookVideo");
+      video.pause();
+      document.getElementById("videoView").classList.add("hidden");
     }
 
-    function moveRoom(direction) {
-      const room = document.getElementById("museum-room");
-      room.scrollBy({
-        left: direction * 300,
-        behavior: "smooth"
-      });
-    }
+    updateLook();
   </script>
 </body>
 </html>
