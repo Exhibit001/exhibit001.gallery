@@ -49,9 +49,9 @@ body {
 .arrow-btn {
   background: black;
   color: white;
-  padding: 14px 20px;
+  padding: 25px 30px;
   border: none;
-  font-size: 100px; /* BIGGER ARROW */
+  font-size: 38px; /* BIGGER ARROW */
   font-family: monospace; /* cleaner retro arrow */
   cursor: pointer;
   line-height: 1;
