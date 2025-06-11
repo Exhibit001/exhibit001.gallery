@@ -8,14 +8,16 @@
 </head>
 <body>
   <div class="carousel-wrapper">
-    <div class="arrow left" onclick="changeLook(-1)">←</div>
-
     <div class="carousel-frame" onclick="openPopup()">
       <img id="techImage" src="looks/tech1.jpg" alt="Style" />
       <p class="style-name" id="styleLabel">NO.001</p>
     </div>
 
-    <div class="arrow right" onclick="changeLook(1)">→</div>
+    <div class="bottom-arrows">
+      <button onclick="changeLook(-1)">←</button>
+      <span class="arrow-label">LEFT / RIGHT</span>
+      <button onclick="changeLook(1)">→</button>
+    </div>
   </div>
 
   <!-- Popup Prompt -->
@@ -43,21 +45,21 @@
     const looks = [
       {
         name: "NO.001",
-        img: "looks/tech1.jpg",
-        video: "looks/loop1.mp4",
-        desc: "Created June 2025 – Recycled denim, hand-stitched and painted."
+        img: "looks/newjeans1.jpg",
+        video: "looks/loopjeans1.mp4",
+        desc: "Denim patchwork jeans made June 2025. Inspired by NYC pavement."
       },
       {
         name: "NO.002",
-        img: "looks/tech2.jpg",
-        video: "looks/loop2.mp4",
-        desc: "Wide-leg painted canvas with contrast seams. July 2025."
+        img: "looks/newshirt1.jpg",
+        video: "looks/loopshirt1.mp4",
+        desc: "Minimalist cream button-up made from upcycled canvas. July 2025."
       },
       {
         name: "NO.003",
-        img: "looks/tech3.jpg",
-        video: "looks/loop3.mp4",
-        desc: "Asymmetrical cropped shirt sample. Made August 2025."
+        img: "looks/newcombo1.jpg",
+        video: "looks/loopcombo1.mp4",
+        desc: "Layered combo look featuring hand-painted details."
       }
     ];
 
@@ -66,7 +68,7 @@
     function updateLook() {
       document.getElementById("techImage").src = looks[current].img;
       document.getElementById("styleLabel").innerText = looks[current].name;
-      document.getElementById("popupQuestion").innerText = 
+      document.getElementById("popupQuestion").innerText =
         "Want to look at style " + looks[current].name + "?";
     }
 
@@ -94,9 +96,8 @@
     }
 
     function closeVideo() {
-      const video = document.getElementById("lookVideo");
-      video.pause();
       document.getElementById("videoView").classList.add("hidden");
+      document.getElementById("lookVideo").pause();
     }
 
     updateLook();
