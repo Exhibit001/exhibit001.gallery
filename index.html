@@ -4,97 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Exhibit001 Gallery</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="canonical" href="https://exhibit001.gallery/"/>
+
+  <!-- ✅ SEO Meta -->
+  <meta name="description" content="Explore the Exhibit001 fashion gallery — handmade streetwear documented like art. Full drop coming soon." />
+  <meta name="keywords" content="Exhibit001 gallery, fashion art, handmade fashion, streetwear, coming soon, S!CK" />
+  <meta name="author" content="Exhibit001" />
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:title" content="Gallery | Exhibit001" />
+  <meta property="og:description" content="The Exhibit001 fashion gallery is coming soon. Explore the drop when it goes live." />
+  <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
+  <meta property="og:url" content="https://exhibit001.gallery" />
+  <meta property="og:type" content="website" />
+
+  <!-- ✅ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Exhibit001 Gallery",
+    "url": "https://exhibit001.gallery",
+    "description": "Gallery of Exhibit001 — a handmade fashion archive. Full visual drop coming soon.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Exhibit001"
+    }
+  }
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+      border: 3px dashed white;
+    }
+  </style>
 </head>
 <body>
-  <div class="gallery">
-    <div class="frame">
-      <img id="mainImage" src="" alt="Tech Style">
-      <div class="title" id="styleName">STYLE NO.001</div>
-    </div>
-
-    <div class="nav">
-      <button class="arrow" onclick="prevLook()">◄</button>
-      <span>(LEFT)</span>
-      <span>(RIGHT)</span>
-      <button class="arrow" onclick="nextLook()">►</button>
-    </div>
-  </div>
-
-  <!-- Popup -->
-  <div id="popup" class="popup hidden">
-    <div class="popup-box">
-      <p id="popup-title">Want to look at style?</p>
-      <div class="popup-buttons">
-        <button onclick="showDetails()" class="yes">YES</button>
-        <button onclick="hidePopup()" class="no">NO</button>
-      </div>
-    </div>
-  </div>
-
- <!-- Details -->
-<div id="details" class="details hidden">
-  <div class="detail-box">
-    <video id="styleVideo" autoplay muted loop playsinline></video>
-    <div class="desc-box" id="styleDesc"></div>
-  </div>
-</div>
-
-
-  <script>
-    const looks = [
-      {
-        name: "STYLE NO.001",
-        img: "looks/tech1.jpg",
-        video: "looks/loop1.mp4",
-        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
-      },
-      // Add more looks here
-    ];
-
-    let currentIndex = 0;
-
-    const img = document.getElementById("mainImage");
-    const nameEl = document.getElementById("styleName");
-
-    function updateLook() {
-      img.src = looks[currentIndex].img;
-      nameEl.textContent = looks[currentIndex].name;
-    }
-
-    function prevLook() {
-      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
-      updateLook();
-    }
-
-    function nextLook() {
-      currentIndex = (currentIndex + 1) % looks.length;
-      updateLook();
-    }
-
-    img.addEventListener("click", () => {
-      const style = looks[currentIndex];
-      document.getElementById("popup-title").textContent = `Want to look at style ${style.name}?`;
-      document.getElementById("popup").classList.remove("hidden");
-    });
-
-    function hidePopup() {
-      document.getElementById("popup").classList.add("hidden");
-    }
-
-    function showDetails() {
-      const style = looks[currentIndex];
-      document.getElementById("popup").classList.add("hidden");
-      document.getElementById("details").classList.remove("hidden");
-
-      const video = document.getElementById("styleVideo");
-      video.src = style.video;
-      video.load();
-
-      document.getElementById("styleDesc").textContent = style.desc;
-    }
-
-    updateLook();
-  </script>
+  <img src="comingsoon.jpg" alt="Gallery Coming Soon" />
 </body>
 </html>
