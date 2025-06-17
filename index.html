@@ -27,16 +27,15 @@
 
     html, body {
       height: 100%;
-      width: 100%;
       background-color: white;
       font-family: Arial, sans-serif;
       color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
       text-align: center;
       padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .click-text {
@@ -46,17 +45,55 @@
       letter-spacing: 1px;
     }
 
+    .gallery {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-arrow {
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
     .image-box img {
       height: 400px;
       max-width: 90vw;
-      object-fit: contain;
+      border: 2px solid black;
       cursor: pointer;
+    }
+
+    .info-box {
+      margin-top: 20px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .info-box img {
+      height: 400px;
+      max-width: 90vw;
+      object-fit: contain;
       border: 2px solid black;
     }
 
+    .description {
+      margin-top: 12px;
+      font-size: 16px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
     @media (max-width: 600px) {
-      .image-box img {
+      .image-box img,
+      .info-box img {
         height: 250px;
+      }
+
+      .nav-arrow {
+        font-size: 30px;
       }
 
       .click-text {
@@ -68,10 +105,69 @@
 <body>
   <div class="click-text">CLICK FOR INFO</div>
 
-  <div class="image-box">
-    <img src="looks/loop1.gif" alt="Spinning Fashion Piece" onclick="alert('Info coming soon.')" />
+  <div class="gallery">
+    <div class="nav-arrow" onclick="prevPiece()">◄</div>
+
+    <div class="image-box" onclick="showInfo()">
+      <img id="mainImage" src="looks/loop1.gif" alt="Spinning Fashion Piece" />
+    </div>
+
+    <div class="nav-arrow" onclick="nextPiece()">►</div>
   </div>
 
   <div class="click-text">CLICK FOR INFO</div>
+
+  <div class="info-box" id="infoBox">
+    <img id="flatImage" src="looks/flat1.jpg" alt="Flat Garment Image" />
+    <div class="description" id="descText">
+      X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind.
+    </div>
+  </div>
+
+  <script>
+    const pieces = [
+      {
+        gif: "looks/loop1.gif",
+        flat: "looks/flat1.jpg",
+        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
+      },
+      {
+        gif: "looks/loop2.gif",
+        flat: "looks/flat2.jpg",
+        desc: "Overlay tech shirt. Designed with triple-stitched contrast seams and reflective thread. Drop 001."
+      }
+      // Add more here
+    ];
+
+    let currentIndex = 0;
+    const mainImg = document.getElementById("mainImage");
+    const flatImg = document.getElementById("flatImage");
+    const descText = document.getElementById("descText");
+    const infoBox = document.getElementById("infoBox");
+
+    function updateGallery() {
+      const piece = pieces[currentIndex];
+      mainImg.src = piece.gif;
+      flatImg.src = piece.flat;
+      descText.textContent = piece.desc;
+      infoBox.style.display = "none";
+    }
+
+    function prevPiece() {
+      currentIndex = (currentIndex - 1 + pieces.length) % pieces.length;
+      updateGallery();
+    }
+
+    function nextPiece() {
+      currentIndex = (currentIndex + 1) % pieces.length;
+      updateGallery();
+    }
+
+    function showInfo() {
+      infoBox.style.display = "flex";
+    }
+
+    updateGallery();
+  </script>
 </body>
 </html>
