@@ -62,21 +62,26 @@
       margin-top: 30px;
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 60px;
     }
 
     .nav button {
-      font-size: 24px;
+      font-size: 42px;
       background: none;
       border: none;
       cursor: pointer;
       color: #000;
+      padding: 0 15px;
+    }
+
+    .nav button:hover {
+      color: #666;
     }
 
     @media (max-width: 500px) {
       h1 { font-size: 22px; }
       .title { font-size: 16px; }
-      .nav button { font-size: 20px; }
+      .nav button { font-size: 36px; }
     }
   </style>
 </head>
@@ -100,8 +105,8 @@
       {
         name: "STYLE NO.002",
         gif: "looks/loop2.gif"
-      },
-      // add more styles here
+      }
+      // Add more looks as needed
     ];
 
     let current = 0;
@@ -123,7 +128,7 @@
       showLook(current);
     }
 
-    // init first look
+    // Initialize first look
     showLook(current);
   </script>
 </body>
