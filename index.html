@@ -5,131 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Exhibit001</title>
   <link rel="canonical" href="https://exhibit001.gallery/" />
-  <meta name="description" content="Exhibit001 Gallery — rotating visuals of tech-style fashion pieces, handmade and framed like digital art." />
-  <meta name="keywords" content="Exhibit001 gallery, fashion tech packs, handmade fashion, streetwear art, S!CK clothing" />
+
+  <!-- ✅ SEO Meta -->
+  <meta name="description" content="Tech-style garment visuals from Exhibit001. Handmade streetwear with archival design." />
+  <meta name="keywords" content="Exhibit001, fashion gallery, techwear, handmade jeans, archive fashion" />
   <meta name="author" content="Exhibit001" />
 
-  <!-- Open Graph -->
+  <!-- ✅ Open Graph -->
   <meta property="og:title" content="Gallery | Exhibit001" />
-  <meta property="og:description" content="Preview rotating visuals of fashion styles from Exhibit001 — view each garment as a standalone work." />
+  <meta property="og:description" content="Explore the fashion archive of Exhibit001 — style drops, garment visuals, and more." />
   <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
   <meta property="og:url" content="https://exhibit001.gallery/" />
   <meta property="og:type" content="website" />
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
-
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: #fff;
-      color: #000;
-      font-family: 'Acme', sans-serif;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background: white;
+      font-family: Arial, sans-serif;
+      color: black;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      flex-direction: row;
+      gap: 40px;
+      position: relative;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      font-size: 28px;
+    .side-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 4px;
+      cursor: default;
     }
 
-    .frame {
-      border: 4px solid black;
-      padding: 10px;
-      width: 90%;
-      max-width: 400px;
-      background: #f9f9f9;
-    }
-
-    .frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .title {
-      margin-top: 12px;
-      font-size: 20px;
-    }
-
-    .nav {
-      margin-top: 30px;
+    .image-box {
+      position: relative;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 60px;
+      max-width: 90vw;
+      max-height: 80vh;
     }
 
-    .nav button {
-      font-size: 42px;
-      background: none;
-      border: none;
+    .image-box img {
+      width: auto;
+      height: 400px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border: 2px solid black;
       cursor: pointer;
-      color: #000;
-      padding: 0 15px;
     }
 
-    .nav button:hover {
-      color: #666;
+    .arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      font-weight: bold;
+      color: black;
+      cursor: pointer;
+      user-select: none;
     }
 
-    @media (max-width: 500px) {
-      h1 { font-size: 22px; }
-      .title { font-size: 16px; }
-      .nav button { font-size: 36px; }
+    .arrow-left {
+      left: -60px;
+    }
+
+    .arrow-right {
+      right: -60px;
+    }
+
+    @media (max-width: 600px) {
+      .side-text {
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .arrows {
+        font-size: 30px;
+        left: -40px;
+        right: -40px;
+      }
+
+      .image-box img {
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 id="styleTitle">STYLE NO.001</h1>
-  <div class="frame">
-    <img id="mainImage" src="looks/loop1.gif" alt="Rotating Style Preview">
-  </div>
+  <div class="container">
+    <div class="side-text">CLICK FOR INFO</div>
 
-  <div class="nav">
-    <button onclick="prevLook()">◄</button>
-    <button onclick="nextLook()">►</button>
+    <div class="image-box">
+      <div class="arrows arrow-left" onclick="prevImage()">&#9664;</div>
+      <img id="mainImage" src="looks/loop1.gif" alt="Spinning style preview" onclick="handleClick()" />
+      <div class="arrows arrow-right" onclick="nextImage()">&#9654;</div>
+    </div>
+
+    <div class="side-text">CLICK FOR INFO</div>
   </div>
 
   <script>
     const looks = [
-      {
-        name: "STYLE NO.001",
-        gif: "looks/loop1.gif"
-      },
-      {
-        name: "STYLE NO.002",
-        gif: "looks/loop2.gif"
-      }
-      // Add more looks as needed
+      { gif: "looks/loop1.gif" },
+      { gif: "looks/loop2.gif" },
+      { gif: "looks/loop3.gif" }
     ];
 
-    let current = 0;
-    const image = document.getElementById("mainImage");
-    const title = document.getElementById("styleTitle");
+    let index = 0;
+    const img = document.getElementById("mainImage");
 
-    function showLook(index) {
-      image.src = looks[index].gif;
-      title.textContent = looks[index].name;
+    function updateImage() {
+      img.src = looks[index].gif;
     }
 
-    function prevLook() {
-      current = (current - 1 + looks.length) % looks.length;
-      showLook(current);
+    function prevImage() {
+      index = (index - 1 + looks.length) % looks.length;
+      updateImage();
     }
 
-    function nextLook() {
-      current = (current + 1) % looks.length;
-      showLook(current);
+    function nextImage() {
+      index = (index + 1) % looks.length;
+      updateImage();
     }
 
-    // Initialize first look
-    showLook(current);
+    function handleClick() {
+      alert("Info popup or redirect can go here.");
+    }
   </script>
 </body>
 </html>
