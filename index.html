@@ -2,172 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Exhibit001</title>
   <link rel="canonical" href="https://exhibit001.gallery/" />
 
   <!-- ✅ SEO Meta -->
-  <meta name="description" content="View spinning previews of Exhibit001's handmade fashion archive. Click for info." />
-  <meta name="keywords" content="Exhibit001 gallery, handmade fashion, streetwear, fashion GIF, garment archive" />
+  <meta name="description" content="Explore the Exhibit001 gallery: 15 handmade streetwear pieces presented like art. Click into each to learn the design story." />
+  <meta name="keywords" content="Exhibit001 gallery, handmade jeans, fashion archive, streetwear, S!CK, spinning GIFs, NYC design" />
   <meta name="author" content="Exhibit001" />
 
   <!-- ✅ Open Graph -->
   <meta property="og:title" content="Gallery | Exhibit001" />
-  <meta property="og:description" content="Explore rotating visuals of the latest pieces from Exhibit001." />
+  <meta property="og:description" content="The Exhibit001 gallery — spinning streetwear pieces documented as art. Click each to dive deeper." />
   <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
-  <meta property="og:url" content="https://exhibit001.gallery/" />
+  <meta property="og:url" content="https://exhibit001.gallery" />
   <meta property="og:type" content="website" />
 
+  <!-- ✅ Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      background-color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Acme', sans-serif;
+      background: white;
       color: black;
-      text-align: center;
-      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      height: 100vh;
     }
 
-    .click-text {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 12px 0;
-      letter-spacing: 1px;
+    .title {
+      font-size: 24px;
+      margin-bottom: 12px;
     }
 
-    .gallery {
+    .image-box {
+      position: relative;
       display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .nav-arrow {
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .image-box img {
-      height: 400px;
-      max-width: 90vw;
-      border: 2px solid black;
-      cursor: pointer;
-    }
-
-    .info-box {
-      margin-top: 20px;
-      display: none;
       flex-direction: column;
       align-items: center;
     }
 
-    .info-box img {
-      height: 400px;
-      max-width: 90vw;
-      object-fit: contain;
-      border: 2px solid black;
+    .nav-arrows {
+      margin-top: 12px;
+      font-size: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      cursor: pointer;
     }
 
-    .description {
-      margin-top: 12px;
-      font-size: 16px;
-      max-width: 600px;
-      line-height: 1.5;
+    .nav-arrows span {
+      user-select: none;
+    }
+
+    .click-for-info {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #222;
+    }
+
+    #lookImg {
+      width: 300px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 8px;
     }
 
     @media (max-width: 600px) {
-      .image-box img,
-      .info-box img {
-        height: 250px;
+      #lookImg {
+        width: 90%;
       }
-
-      .nav-arrow {
-        font-size: 30px;
+      .title {
+        font-size: 20px;
       }
-
-      .click-text {
+      .nav-arrows {
+        font-size: 28px;
+        gap: 30px;
+      }
+      .click-for-info {
         font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="click-text">CLICK FOR INFO</div>
+  <div class="title" id="styleName">STYLE NO.001</div>
+  <div class="click-for-info">CLICK FOR INFO</div>
 
-  <div class="gallery">
-    <div class="nav-arrow" onclick="prevPiece()">◄</div>
-
-    <div class="image-box" onclick="showInfo()">
-      <img id="mainImage" src="looks/loop1.gif" alt="Spinning Fashion Piece" />
-    </div>
-
-    <div class="nav-arrow" onclick="nextPiece()">►</div>
+  <div class="image-box">
+    <img id="lookImg" src="looks/loop1.gif" alt="Style Preview" onclick="openDetail()" />
   </div>
 
-  <div class="click-text">CLICK FOR INFO</div>
+  <div class="click-for-info">CLICK FOR INFO</div>
 
-  <div class="info-box" id="infoBox">
-    <img id="flatImage" src="looks/flat1.jpg" alt="Flat Garment Image" />
-    <div class="description" id="descText">
-      X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind.
-    </div>
+  <div class="nav-arrows">
+    <span onclick="prevLook()">&#9664;</span>
+    <span onclick="nextLook()">&#9654;</span>
   </div>
 
   <script>
-    const pieces = [
+    const looks = [
       {
+        name: "STYLE NO.001",
         gif: "looks/loop1.gif",
-        flat: "looks/flat1.jpg",
-        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
+        detailPage: "style001.html"
       },
       {
+        name: "STYLE NO.002",
         gif: "looks/loop2.gif",
-        flat: "looks/flat2.jpg",
-        desc: "Overlay tech shirt. Designed with triple-stitched contrast seams and reflective thread. Drop 001."
-      }
-      // Add more here
+        detailPage: "style002.html"
+      },
+      {
+        name: "STYLE NO.003",
+        gif: "looks/loop3.gif",
+        detailPage: "style003.html"
+      },
+      // Add up to STYLE NO.015 like this...
     ];
 
     let currentIndex = 0;
-    const mainImg = document.getElementById("mainImage");
-    const flatImg = document.getElementById("flatImage");
-    const descText = document.getElementById("descText");
-    const infoBox = document.getElementById("infoBox");
 
-    function updateGallery() {
-      const piece = pieces[currentIndex];
-      mainImg.src = piece.gif;
-      flatImg.src = piece.flat;
-      descText.textContent = piece.desc;
-      infoBox.style.display = "none";
+    const styleName = document.getElementById("styleName");
+    const lookImg = document.getElementById("lookImg");
+
+    function renderLook() {
+      const current = looks[currentIndex];
+      styleName.textContent = current.name;
+      lookImg.src = current.gif;
     }
 
-    function prevPiece() {
-      currentIndex = (currentIndex - 1 + pieces.length) % pieces.length;
-      updateGallery();
+    function nextLook() {
+      currentIndex = (currentIndex + 1) % looks.length;
+      renderLook();
     }
 
-    function nextPiece() {
-      currentIndex = (currentIndex + 1) % pieces.length;
-      updateGallery();
+    function prevLook() {
+      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
+      renderLook();
     }
 
-    function showInfo() {
-      infoBox.style.display = "flex";
+    function openDetail() {
+      window.open(looks[currentIndex].detailPage, '_blank');
     }
 
-    updateGallery();
+    renderLook();
   </script>
 </body>
 </html>
