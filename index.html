@@ -3,239 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exhibit001 Gallery</title>
+  <title>Gallery | Exhibit001</title>
   <link rel="canonical" href="https://exhibit001.gallery/" />
-
-  <!-- ✅ SEO Meta -->
-  <meta name="description" content="Explore the Exhibit001 fashion gallery — handmade streetwear documented like art. Full drop coming soon." />
-  <meta name="keywords" content="Exhibit001 gallery, fashion art, handmade fashion, streetwear, S!CK" />
+  <meta name="description" content="Exhibit001 Gallery — rotating visuals of tech-style fashion pieces, handmade and framed like digital art." />
+  <meta name="keywords" content="Exhibit001 gallery, fashion tech packs, handmade fashion, streetwear art, S!CK clothing" />
   <meta name="author" content="Exhibit001" />
 
-  <!-- ✅ Open Graph -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Gallery | Exhibit001" />
-  <meta property="og:description" content="The Exhibit001 fashion gallery . Explore the drop when it goes live." />
+  <meta property="og:description" content="Preview rotating visuals of fashion styles from Exhibit001 — view each garment as a standalone work." />
   <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
-  <meta property="og:url" content="https://exhibit001.gallery" />
+  <meta property="og:url" content="https://exhibit001.gallery/" />
   <meta property="og:type" content="website" />
 
-  <!-- ✅ Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Exhibit001 Gallery",
-    "url": "https://exhibit001.gallery",
-    "description": "Gallery of Exhibit001 — a handmade fashion archive. Full visual drop coming soon.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Exhibit001"
-    }
-  }
-  </script>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 
-  <!-- CSS Styles -->
   <style>
-    /* Body styling */
     body {
-      font-family: Arial, sans-serif;
-      background-color: #1c1c1c;
-      color: white;
       margin: 0;
       padding: 0;
-    }
-
-    /* Gallery Container */
-    .gallery {
+      background: #fff;
+      color: #000;
+      font-family: 'Acme', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
-    }
-
-    /* Frame styling */
-    .frame {
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
+    }
+
+    h1 {
       margin-bottom: 20px;
+      font-size: 28px;
     }
 
-    /* Title above the garment */
-    .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    /* Portrait Style for the garment image */
-    .portrait {
-      width: 100%;
+    .frame {
+      border: 4px solid black;
+      padding: 10px;
+      width: 90%;
       max-width: 400px;
-      margin: auto;
-      background-color: #333;
-      padding: 20px;
-      border-radius: 10px;
-      overflow: hidden;
+      background: #f9f9f9;
     }
 
-    /* Spinning GIF inside the portrait */
-    #mainImage {
+    .frame img {
       width: 100%;
       height: auto;
-      animation: spin 10s linear infinite; /* Slow spin effect */
+      display: block;
     }
 
-    /* Keyframe for spinning */
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .title {
+      margin-top: 12px;
+      font-size: 20px;
     }
 
-    /* Navigation arrows */
     .nav {
+      margin-top: 30px;
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 40px;
     }
 
-    .arrow {
+    .nav button {
+      font-size: 24px;
       background: none;
       border: none;
-      color: white;
-      font-size: 30px;
       cursor: pointer;
+      color: #000;
     }
 
-    /* Popup for Flat Mockup */
-    .popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .popup-box {
-      background-color: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 10px;
-      width: 300px;
-    }
-
-    .flat-mockup {
-      width: 100%;
-      max-width: 500px;
-      margin-bottom: 20px;
-    }
-
-    .popup-buttons button {
-      padding: 10px;
-      margin: 10px;
-      background-color: black;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 600px) {
-      .title {
-        font-size: 18px;
-      }
-
-      .portrait {
-        width: 80%;
-      }
-
-      .arrow {
-        font-size: 25px;
-      }
-
-      .popup-box {
-        width: 80%;
-      }
-    }
-
-    .hidden {
-      display: none;
+    @media (max-width: 500px) {
+      h1 { font-size: 22px; }
+      .title { font-size: 16px; }
+      .nav button { font-size: 20px; }
     }
   </style>
 </head>
-
 <body>
-  <div class="gallery">
-    <div class="frame">
-      <div class="title" id="styleName">STYLE NO.001</div>
-      <div class="portrait">
-        <img id="mainImage" src="" alt="Tech Style">
-      </div>
-    </div>
-
-    <div class="nav">
-      <button class="arrow" onclick="prevLook()">◄</button>
-      <span>(LEFT)</span>
-      <span>(RIGHT)</span>
-      <button class="arrow" onclick="nextLook()">►</button>
-    </div>
+  <h1 id="styleTitle">STYLE NO.001</h1>
+  <div class="frame">
+    <img id="mainImage" src="looks/loop1.gif" alt="Rotating Style Preview">
   </div>
 
-  <!-- Popup -->
-  <div id="popup" class="popup hidden">
-    <div class="popup-box">
-      <img id="flatMockup" src="" alt="Flat Mockup" class="flat-mockup">
-      <div class="popup-buttons">
-        <button onclick="hidePopup()" class="no">Close</button>
-      </div>
-    </div>
+  <div class="nav">
+    <button onclick="prevLook()">◄</button>
+    <button onclick="nextLook()">►</button>
   </div>
 
   <script>
     const looks = [
       {
         name: "STYLE NO.001",
-        img: "looks/tech1.gif",  // Use GIF for the main image
-        mockup: "looks/mockup1.jpg",  // Flat mockup image for the popup
-        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
+        gif: "looks/loop1.gif"
       },
-      // Add more looks here
+      {
+        name: "STYLE NO.002",
+        gif: "looks/loop2.gif"
+      },
+      // add more styles here
     ];
 
-    let currentIndex = 0;
+    let current = 0;
+    const image = document.getElementById("mainImage");
+    const title = document.getElementById("styleTitle");
 
-    const img = document.getElementById("mainImage");
-    const nameEl = document.getElementById("styleName");
-
-    function updateLook() {
-      img.src = looks[currentIndex].img;
-      nameEl.textContent = looks[currentIndex].name;
+    function showLook(index) {
+      image.src = looks[index].gif;
+      title.textContent = looks[index].name;
     }
 
     function prevLook() {
-      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
-      updateLook();
+      current = (current - 1 + looks.length) % looks.length;
+      showLook(current);
     }
 
     function nextLook() {
-      currentIndex = (currentIndex + 1) % looks.length;
-      updateLook();
+      current = (current + 1) % looks.length;
+      showLook(current);
     }
 
-    img.addEventListener("click", () => {
-      const style = looks[currentIndex];
-      document.getElementById("popup-title").textContent = `Want to look at style ${style.name}?`;
-      document.getElementById("popup").classList.remove("hidden");
-      document.getElementById("flatMockup").src = style.mockup; // Show flat mockup on click
-    });
-
-    function hidePopup() {
-      document.getElementById("popup").classList.add("hidden");
-    }
-
-    updateLook();
+    // init first look
+    showLook(current);
   </script>
 </body>
 </html>
