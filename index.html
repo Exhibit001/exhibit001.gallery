@@ -8,12 +8,12 @@
 
   <!-- ✅ SEO Meta -->
   <meta name="description" content="Explore the Exhibit001 fashion gallery — handmade streetwear documented like art. Full drop coming soon." />
-  <meta name="keywords" content="Exhibit001 gallery, fashion art, handmade fashion, streetwear, coming soon, S!CK" />
+  <meta name="keywords" content="Exhibit001 gallery, fashion art, handmade fashion, streetwear, S!CK" />
   <meta name="author" content="Exhibit001" />
 
   <!-- ✅ Open Graph -->
   <meta property="og:title" content="Gallery | Exhibit001" />
-  <meta property="og:description" content="The Exhibit001 fashion gallery is coming soon. Explore the drop when it goes live." />
+  <meta property="og:description" content="The Exhibit001 fashion gallery . Explore the drop when it goes live." />
   <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
   <meta property="og:url" content="https://exhibit001.gallery" />
   <meta property="og:type" content="website" />
@@ -31,43 +31,214 @@
       "name": "Exhibit001"
     }
   }
-  </script>
-
-  <!-- 8-bit Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exhibit001 Gallery</title>
   <style>
-    html, body {
+    /* Body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: white;
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      background: black;
-      color: #00ff99;
-      font-family: 'Press Start 2P', monospace;
+    }
+
+    /* Gallery Container */
+    .gallery {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Frame styling */
+    .frame {
       text-align: center;
+      margin-bottom: 20px;
     }
 
-    .message {
-      font-size: 3.5vw;
-      padding: 30px;
-      border: 4px dotted #00ff99;
-      max-width: 90%;
-      box-sizing: border-box;
-      text-shadow: 1px 1px #008866;
+    /* Title above the garment */
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    @media (min-width: 768px) {
-      .message {
-        font-size: 24px;
+    /* Portrait Style for the garment image */
+    .portrait {
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* Spinning GIF inside the portrait */
+    #mainImage {
+      width: 100%;
+      height: auto;
+      animation: spin 10s linear infinite; /* Slow spin effect */
+    }
+
+    /* Keyframe for spinning */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Navigation arrows */
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .arrow {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    /* Popup for Flat Mockup */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-box {
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .flat-mockup {
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    .popup-buttons button {
+      padding: 10px;
+      margin: 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .title {
+        font-size: 18px;
       }
+
+      .portrait {
+        width: 80%;
+      }
+
+      .arrow {
+        font-size: 25px;
+      }
+
+      .popup-box {
+        width: 80%;
+      }
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
+
 <body>
-  <div class="message">GALLERY COMING SOON</div>
+  <div class="gallery">
+    <div class="frame">
+      <div class="title" id="styleName">STYLE NO.001</div>
+      <div class="portrait">
+        <img id="mainImage" src="" alt="Tech Style">
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="arrow" onclick="prevLook()">◄</button>
+      <span>(LEFT)</span>
+      <span>(RIGHT)</span>
+      <button class="arrow" onclick="nextLook()">►</button>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-box">
+      <img id="flatMockup" src="" alt="Flat Mockup" class="flat-mockup">
+      <div class="popup-buttons">
+        <button onclick="hidePopup()" class="no">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const looks = [
+      {
+        name: "STYLE NO.001",
+        img: "looks/tech1.gif",  // Use GIF for the main image
+        mockup: "looks/mockup1.jpg",  // Flat mockup image for the popup
+        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
+      },
+      // Add more looks here
+    ];
+
+    let currentIndex = 0;
+
+    const img = document.getElementById("mainImage");
+    const nameEl = document.getElementById("styleName");
+
+    function updateLook() {
+      img.src = looks[currentIndex].img;
+      nameEl.textContent = looks[currentIndex].name;
+    }
+
+    function prevLook() {
+      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
+      updateLook();
+    }
+
+    function nextLook() {
+      currentIndex = (currentIndex + 1) % looks.length;
+      updateLook();
+    }
+
+    img.addEventListener("click", () => {
+      const style = looks[currentIndex];
+      document.getElementById("popup-title").textContent = `Want to look at style ${style.name}?`;
+      document.getElementById("popup").classList.remove("hidden");
+      document.getElementById("flatMockup").src = style.mockup; // Show flat mockup on click
+    });
+
+    function hidePopup() {
+      document.getElementById("popup").classList.add("hidden");
+    }
+
+    updateLook();
+  </script>
 </body>
 </html>
