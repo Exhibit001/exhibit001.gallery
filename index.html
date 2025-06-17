@@ -3,157 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Exhibit001</title>
-  <link rel="canonical" href="https://exhibit001.gallery/" />
-
-  <!-- ✅ SEO Meta -->
-  <meta name="description" content="Explore the Exhibit001 gallery: 15 handmade streetwear pieces presented like art. Click into each to learn the design story." />
-  <meta name="keywords" content="Exhibit001 gallery, handmade jeans, fashion archive, streetwear, S!CK, spinning GIFs, NYC design" />
+  <title>Exhibit001 – Video Archive</title>
+  <link rel="canonical" href="https://exhibit001.video" />
+  
+  <!-- SEO META -->
+  <meta name="description" content="Watch raw, unfiltered video footage from Exhibit001. Street tagging, studio process, and behind-the-scenes fashion in motion." />
+  <meta name="keywords" content="Exhibit001 video, streetwear tagging, behind the scenes fashion, graffiti NYC, fashion in motion" />
   <meta name="author" content="Exhibit001" />
 
-  <!-- ✅ Open Graph -->
-  <meta property="og:title" content="Gallery | Exhibit001" />
-  <meta property="og:description" content="The Exhibit001 gallery — spinning streetwear pieces documented as art. Click each to dive deeper." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Exhibit001 – Video Archive" />
+  <meta property="og:description" content="Watch the behind-the-scenes fashion and street action behind Exhibit001." />
+  <meta property="og:url" content="https://exhibit001.video" />
   <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
-  <meta property="og:url" content="https://exhibit001.gallery" />
   <meta property="og:type" content="website" />
 
-  <!-- ✅ Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+  <!-- Font: VT323 for retro look -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Acme', sans-serif;
-      background: white;
-      color: black;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-family: 'VT323', monospace;
+      background-color: #000;
+      color: #fff;
       text-align: center;
-      height: 100vh;
+      padding-top: 50px;
     }
 
-    .title {
-      font-size: 24px;
-      margin-bottom: 12px;
+    h1 {
+      font-size: 40px;
+      color: #ff8c8c;
+      margin-bottom: 40px;
     }
 
-    .image-box {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .video-container {
+      border: 2px dashed white;
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    .nav-arrows {
-      margin-top: 12px;
-      font-size: 36px;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      cursor: pointer;
+    .description {
+      font-size: 20px;
+      margin-bottom: 40px;
+      white-space: pre-wrap;
     }
 
-    .nav-arrows span {
-      user-select: none;
+    .placeholder {
+      background-color: #222;
+      border: 1px dashed #aaa;
+      color: #aaa;
+      padding: 100px 20px;
+      font-size: 20px;
     }
-
-    .click-for-info {
-      margin: 10px 0;
-      font-size: 18px;
-      color: #222;
-    }
-
-  #lookImg {
-  max-width: 90vw;
-  max-height: 80vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border: 3px solid white;
-}
 
     @media (max-width: 600px) {
-      #lookImg {
-        width: 90%;
+      h1 {
+        font-size: 32px;
       }
-      .title {
-        font-size: 20px;
+
+      .description {
+        font-size: 18px;
+        padding: 0 10px;
       }
-      .nav-arrows {
-        font-size: 28px;
-        gap: 30px;
-      }
-      .click-for-info {
+
+      .placeholder {
         font-size: 16px;
+        padding: 60px 10px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="title" id="styleName">STYLE NO.001</div>
-  <div class="click-for-info">CLICK FOR INFO</div>
-
-  <div class="image-box">
-    <img id="lookImg" src="looks/loop1.gif" alt="Style Preview" onclick="openDetail()" />
+  <h1>🎬 Exhibit001 – Video Archive</h1>
+  
+  <div class="video-container">
+    <div class="description">
+      Raw footage coming soon. This space will showcase street tagging videos,<br>
+      in-studio process, and the raw motion behind every handmade piece.
+    </div>
+    
+    <div class="placeholder">
+      [ VIDEO PLAYER HERE SOON ]
+    </div>
   </div>
-
-  <div class="click-for-info">CLICK FOR INFO</div>
-
-  <div class="nav-arrows">
-    <span onclick="prevLook()">&#9664;</span>
-    <span onclick="nextLook()">&#9654;</span>
-  </div>
-
-  <script>
-    const looks = [
-      {
-        name: "STYLE NO.001",
-        gif: "looks/loop1.gif",
-        detailPage: "style001.html"
-      },
-      {
-        name: "STYLE NO.002",
-        gif: "looks/loop2.gif",
-        detailPage: "style002.html"
-      },
-      {
-        name: "STYLE NO.003",
-        gif: "looks/loop3.gif",
-        detailPage: "style003.html"
-      },
-      // Add up to STYLE NO.015 like this...
-    ];
-
-    let currentIndex = 0;
-
-    const styleName = document.getElementById("styleName");
-    const lookImg = document.getElementById("lookImg");
-
-    function renderLook() {
-      const current = looks[currentIndex];
-      styleName.textContent = current.name;
-      lookImg.src = current.gif;
-    }
-
-    function nextLook() {
-      currentIndex = (currentIndex + 1) % looks.length;
-      renderLook();
-    }
-
-    function prevLook() {
-      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
-      renderLook();
-    }
-
-    function openDetail() {
-      window.open(looks[currentIndex].detailPage, '_blank');
-    }
-
-    renderLook();
-  </script>
 </body>
 </html>
