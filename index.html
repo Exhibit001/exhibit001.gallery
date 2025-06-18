@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exhibit001 Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #fdfdfb;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 90vw;
+      max-width: 400px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+
+    .nav {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90vw;
+      max-width: 400px;
+    }
+
+    .nav-button {
+      font-size: 32px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-caption {
+      font-size: 14px;
+      margin-top: 8px;
+      text-align: center;
+      color: #444;
+    }
+
+    .bottom-note {
+      position: absolute;
+      bottom: 20px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      width: 100%;
+    }
+
+    .popup, .details {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      flex-direction: column;
+    }
+
+    .popup-box {
+      background: white;
+      color: black;
+      padding: 30px;
+      border: 3px solid black;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .popup-buttons button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 18px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .details video {
+      width: 90%;
+      max-width: 500px;
+      border: 3px dashed white;
+    }
+
+    .desc-box {
+      max-width: 90%;
+      margin-top: 20px;
+      padding: 20px;
+      background: black;
+      border: 2px solid white;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title" id="styleName">Dustpane Denim</div>
+
+  <div class="video-wrapper">
+    <video id="mainVideo" src="loops/dustpane.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="nav">
+    <div>
+      <button class="nav-button" onclick="prevLook()">◄</button>
+      <div class="nav-caption">LEFT</div>
+    </div>
+    <div>
+      <button class="nav-button" onclick="nextLook()">►</button>
+      <div class="nav-caption">RIGHT</div>
+    </div>
+  </div>
+
+  <div class="bottom-note">CLICK PANTS FOR INFO</div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-box">
+      <p id="popup-title">Want to look at Dustpane Denim?</p>
+      <div class="popup-buttons">
+        <button onclick="showDetails()">YES</button>
+        <button onclick="hidePopup()">NO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details -->
+  <div id="details" class="details hidden">
+    <video id="detailVideo" autoplay muted loop playsinline></video>
+    <div class="desc-box" id="styleDesc"></div>
+  </div>
+
+  <script>
+    const looks = [
+      {
+        name: "Dustpane Denim",
+        video: "loops/dustpane.mp4",
+        detailVideo: "loops/dustpane-detail.mp4",
+        desc: "Made June 2025. Paneled denim inspired by dust trails and faded urban grit. Textured with overstitch seams."
+      },
+      {
+        name: "Trench Rift",
+        video: "loops/trenchrift.mp4",
+        detailVideo: "loops/trenchrift-detail.mp4",
+        desc: "Wide-leg deep rift jeans. Cracked-edge seams. Raw-hem cuts and tensioned binding from back to front."
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function updateLook() {
+      const style = looks[currentIndex];
+      document.getElementById("mainVideo").src = style.video;
+      document.getElementById("styleName").textContent = style.name;
+    }
+
+    function prevLook() {
+      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
+      updateLook();
+    }
+
+    function nextLook() {
+      currentIndex = (currentIndex + 1) % looks.length;
+      updateLook();
+    }
+
+    document.getElementById("mainVideo").addEventListener("click", () => {
+      const style = looks[currentIndex];
+      document.getElementById("popup-title").textContent = `Want to look at ${style.name}?`;
+      document.getElementById("popup").classList.remove("hidden");
+    });
+
+    function hidePopup() {
+      document.getElementById("popup").classList.add("hidden");
+    }
+
+    function showDetails() {
+      const style = looks[currentIndex];
+      hidePopup();
+      document.getElementById("details").classList.remove("hidden");
+
+      const video = document.getElementById("detailVideo");
+      video.src = style.detailVideo;
+      video.load();
+
+      document.getElementById("styleDesc").textContent = style.desc;
+    }
+
+    updateLook();
+  </script>
+</body>
+</html>
