@@ -3,91 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exhibit001 – Video Archive</title>
-  <link rel="canonical" href="https://exhibit001.video" />
-  
-  <!-- SEO META -->
-  <meta name="description" content="Watch raw, unfiltered video footage from Exhibit001. Street tagging, studio process, and behind-the-scenes fashion in motion." />
-  <meta name="keywords" content="Exhibit001 video, streetwear tagging, behind the scenes fashion, graffiti NYC, fashion in motion" />
-  <meta name="author" content="Exhibit001" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Exhibit001 – Video Archive" />
-  <meta property="og:description" content="Watch the behind-the-scenes fashion and street action behind Exhibit001." />
-  <meta property="og:url" content="https://exhibit001.video" />
-  <meta property="og:image" content="https://exhibit001.com/cover.jpg" />
-  <meta property="og:type" content="website" />
-
-  <!-- Font: VT323 for retro look -->
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'VT323', monospace;
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding-top: 50px;
-    }
-
-    h1 {
-      font-size: 40px;
-      color: #ff8c8c;
-      margin-bottom: 40px;
-    }
-
-    .video-container {
-      border: 2px dashed white;
-      padding: 40px 20px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .description {
-      font-size: 20px;
-      margin-bottom: 40px;
-      white-space: pre-wrap;
-    }
-
-    .placeholder {
-      background-color: #222;
-      border: 1px dashed #aaa;
-      color: #aaa;
-      padding: 100px 20px;
-      font-size: 20px;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 32px;
-      }
-
-      .description {
-        font-size: 18px;
-        padding: 0 10px;
-      }
-
-      .placeholder {
-        font-size: 16px;
-        padding: 60px 10px;
-      }
-    }
-  </style>
+  <title>Gallery | Exhibit001</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Explore the Exhibit001 fashion gallery — handmade streetwear documented like art. Full drop coming soon." />
 </head>
 <body>
-  <h1>🎬 Exhibit001 – Video Archive</h1>
-  
-  <div class="video-container">
-    <div class="description">
-      Raw footage coming soon. This space will showcase street tagging videos,<br>
-      in-studio process, and the raw motion behind every handmade piece.
+  <div class="gallery">
+    <div class="frame">
+      <img id="mainImage" src="looks/tech1.jpg" alt="STYLE NO.001" />
+      <div class="title" id="styleName">STYLE NO.001</div>
     </div>
-    
-    <div class="placeholder">
-      [ VIDEO PLAYER HERE SOON ]
+
+    <div class="nav">
+      <button onclick="prevLook()">◄</button>
+      <span style="margin: 0 20px;">SWIPE</span>
+      <button onclick="nextLook()">►</button>
     </div>
   </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-box">
+      <p id="popup-title">Want to look at STYLE NO.001?</p>
+      <div class="popup-buttons">
+        <button onclick="showDetails()">YES</button>
+        <button onclick="hidePopup()">NO</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail view -->
+  <div id="details" class="details hidden">
+    <video id="styleVideo" autoplay muted loop playsinline></video>
+    <div class="desc-box" id="styleDesc"></div>
+  </div>
+
+  <script>
+    const looks = [
+      {
+        name: "STYLE NO.001",
+        img: "looks/tech1.jpg",
+        video: "looks/loop1.mp4",
+        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
+      }
+      // Add more pieces here as needed
+    ];
+
+    let currentIndex = 0;
+
+    function updateLook() {
+      const style = looks[currentIndex];
+      document.getElementById("mainImage").src = style.img;
+      document.getElementById("styleName").textContent = style.name;
+    }
+
+    function prevLook() {
+      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
+      updateLook();
+    }
+
+    function nextLook() {
+      currentIndex = (currentIndex + 1) % looks.length;
+      updateLook();
+    }
+
+    document.getElementById("mainImage").addEventListener("click", () => {
+      const style = looks[currentIndex];
+      document.getElementById("popup-title").textContent = `Want to look at ${style.name}?`;
+      document.getElementById("popup").classList.remove("hidden");
+    });
+
+    function hidePopup() {
+      document.getElementById("popup").classList.add("hidden");
+    }
+
+    function showDetails() {
+      const style = looks[currentIndex];
+      hidePopup();
+      document.getElementById("details").classList.remove("hidden");
+
+      const video = document.getElementById("styleVideo");
+      video.src = style.video;
+      video.load();
+
+      document.getElementById("styleDesc").textContent = style.desc;
+    }
+
+    updateLook();
+  </script>
 </body>
 </html>
