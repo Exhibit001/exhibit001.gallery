@@ -2,94 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Exhibit001</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="description" content="Explore the Exhibit001 fashion gallery — handmade streetwear documented like art. Full drop coming soon." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exhibit001 Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfb; /* just slightly off-white */
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
 </head>
 <body>
-  <div class="gallery">
-    <div class="frame">
-      <img id="mainImage" src="looks/tech1.jpg" alt="STYLE NO.001" />
-      <div class="title" id="styleName">STYLE NO.001</div>
-    </div>
-
-    <div class="nav">
-      <button onclick="prevLook()">◄</button>
-      <span style="margin: 0 20px;">SWIPE</span>
-      <button onclick="nextLook()">►</button>
-    </div>
-  </div>
-
-  <!-- Popup -->
-  <div id="popup" class="popup hidden">
-    <div class="popup-box">
-      <p id="popup-title">Want to look at STYLE NO.001?</p>
-      <div class="popup-buttons">
-        <button onclick="showDetails()">YES</button>
-        <button onclick="hidePopup()">NO</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Detail view -->
-  <div id="details" class="details hidden">
-    <video id="styleVideo" autoplay muted loop playsinline></video>
-    <div class="desc-box" id="styleDesc"></div>
-  </div>
-
-  <script>
-    const looks = [
-      {
-        name: "STYLE NO.001",
-        img: "looks/tech1.jpg",
-        video: "looks/loop1.mp4",
-        desc: "X-twist jorts. Made June 2025. Built with layered panels and curved tape tension — first of its kind."
-      }
-      // Add more pieces here as needed
-    ];
-
-    let currentIndex = 0;
-
-    function updateLook() {
-      const style = looks[currentIndex];
-      document.getElementById("mainImage").src = style.img;
-      document.getElementById("styleName").textContent = style.name;
-    }
-
-    function prevLook() {
-      currentIndex = (currentIndex - 1 + looks.length) % looks.length;
-      updateLook();
-    }
-
-    function nextLook() {
-      currentIndex = (currentIndex + 1) % looks.length;
-      updateLook();
-    }
-
-    document.getElementById("mainImage").addEventListener("click", () => {
-      const style = looks[currentIndex];
-      document.getElementById("popup-title").textContent = `Want to look at ${style.name}?`;
-      document.getElementById("popup").classList.remove("hidden");
-    });
-
-    function hidePopup() {
-      document.getElementById("popup").classList.add("hidden");
-    }
-
-    function showDetails() {
-      const style = looks[currentIndex];
-      hidePopup();
-      document.getElementById("details").classList.remove("hidden");
-
-      const video = document.getElementById("styleVideo");
-      video.src = style.video;
-      video.load();
-
-      document.getElementById("styleDesc").textContent = style.desc;
-    }
-
-    updateLook();
-  </script>
 </body>
 </html>
